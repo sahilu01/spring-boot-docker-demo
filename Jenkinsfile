@@ -1,16 +1,14 @@
 pipeline {
-    agent any
-
-    tools {
-        maven 'Maven'
+    agent {
+        docker {
+            image 'maven:3.8.6-eclipse-temurin-11'
+            args '-v $HOME/.m2:/root/.m2'
+        }
     }
-
     stages {
         stage('Build') {
             steps {
-                 docker.image('maven:3.3.3').inside {
-                        sh 'mvn --version'
-                      }
+                sh 'mvn -B'
             }
         }
     }
