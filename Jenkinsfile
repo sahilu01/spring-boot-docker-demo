@@ -1,17 +1,11 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven'
-    }
-
     stages {
         stage('Build') {
-            steps {
-                sh 'docker info'
+              docker.image('maven:3.3.3').inside {
                 sh 'mvn --version'
-                sh 'mvn -B -DskipTests clean package'
-            }
+              }
         }
     }
 }
