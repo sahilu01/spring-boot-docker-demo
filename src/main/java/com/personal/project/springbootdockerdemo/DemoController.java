@@ -25,6 +25,11 @@ public class DemoController {
   }
 
 
+  @GetMapping("/hello")
+  public String hello(){
+    return "hello!!!!";
+  }
+
 
   @GetMapping("/publish")
   public String publish(){
